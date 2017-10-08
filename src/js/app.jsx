@@ -78,7 +78,7 @@ class Form extends React.Component {
 	render() {
 		let style = {};
 		if (this.props.visible) {
-			style.display = 'initial';\
+			style.display = 'initial';
 		} else {
 			style.display = 'none';
 		}
