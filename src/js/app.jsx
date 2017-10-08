@@ -39,10 +39,16 @@ class App extends React.Component {
 
 	render() {
 		return (
-			<div>
-				<h1>Make Anything Video Art</h1>
-				<h4>Press return to submit a video</h4>
-				<Form visible={this.state.formVisible}/>
+			<div id='wrap'>
+				<div className='title'>
+					<h1>Make Anything Video Art</h1>
+				</div>
+				<div className='instructions'>
+					<h4>Press any key to enter youtube url</h4>
+				</div>
+				<div id='overlay'>
+					<Form visible={this.state.formVisible}/>
+				</div>
 			</div>
 		);
 	}
