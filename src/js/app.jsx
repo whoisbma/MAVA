@@ -1,13 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Context } from './context.jsx';
 
 require('../sass/style.scss');
-
-
-// app
-// 		submit
-//		view
-
 
 class App extends React.Component {
 	constructor(props) {
@@ -40,22 +35,11 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
+				<Context />
 				<h1>Make Anything Video Art</h1>
 				<h4>Press return to submit a video</h4>
 				<Form visible={this.state.formVisible}/>
 			</div>
-		);
-	}
-}
-
-class Context extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-	render() {
-		return (
-			<div id='context'></div>
 		);
 	}
 }
