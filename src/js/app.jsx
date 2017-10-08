@@ -16,20 +16,24 @@ class App extends React.Component {
 		this.state = {
 			formVisible: false,
 		};
+
+		this.handleKeyDown = this.handleKeyDown.bind(this);
 	}
 
 	componentWillMount() {
-		document.addEventListener("keydown", this.handleKeyDown.bind(this));
+		document.addEventListener("keydown", this.handleKeyDown);
 	}
 
 	handleKeyDown() {
-		switch( event.keyCode ) {
-			case 13:
-				console.log('enter');
-				this.setState({formVisible: true});
-				break;
-			default: 
-				break;
+		if (this.state.formVisible === false) {	
+			switch( event.keyCode ) {
+				case 13:
+					console.log('enter');
+					this.setState({formVisible: true});
+					break;
+				default: 
+					break;
+			}
 		}
 	}
 
@@ -50,8 +54,6 @@ class Context extends React.Component {
 	}
 
 	render() {
-
-
 		return (
 			<div id='context'></div>
 		);
@@ -61,6 +63,11 @@ class Context extends React.Component {
 class Form extends React.Component {
 	constructor(props) {
 		super(props);
+		this.textInput = null;
+	}
+
+	componentWillUpdate(nextProps, nextState) {
+
 	}
 
 	submit(e) {
@@ -71,15 +78,14 @@ class Form extends React.Component {
 	render() {
 		let style = {};
 		if (this.props.visible) {
-			style.display = 'initial';
+			style.display = 'initial';\
 		} else {
 			style.display = 'none';
 		}
 
-
 		return (
 			<form style={style}>
-				<input type='url' name='url' id='url-form' placeholder="http://www.example.com" size="60"/>
+				<input autoFocus type='url' name='url' id='url-form' placeholder="http://www.example.com" size="60" />
 				<button onClick={ this.submit }>hi</button>
 			</form>
 		)
