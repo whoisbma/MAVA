@@ -35,7 +35,7 @@ class App extends React.Component {
 	render() {
 		return (
 			<div>
-				<Context />
+				<Context animate={ true }/>
 				<h1>Make Anything Video Art</h1>
 				<h4>Press return to submit a video</h4>
 				<Form visible={this.state.formVisible}/>

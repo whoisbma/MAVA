@@ -80,27 +80,8 @@ export class Context extends React.Component {
 	render() {
 		return (
 			<div>
-				<AnimateButton handleButtonInput={ this.handleButtonInput }/>
 				<div id='context'></div>
 			</div>
 		);
 	}
-}
-
-class AnimateButton extends React.Component {
-  constructor(props) {
-    super(props);
-    this.handlePress = this.props.handleButtonInput;
-  }
-
-  render() {
-    const style = {
-      "position": "absolute",
-      "top": "20px",
-      "left": "20px",
-    }
-    return (
-      <button style={ style } onClick={ this.handlePress }>push me</button>
-    );
-  }
 }
