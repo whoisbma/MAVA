@@ -1,13 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Context } from './context.jsx';
 
 require('../sass/style.scss');
-
-
-// app
-// 		submit
-//		view
-
 
 class App extends React.Component {
 	constructor(props) {
@@ -49,19 +44,8 @@ class App extends React.Component {
 				<div id='overlay'>
 					<Form visible={this.state.formVisible}/>
 				</div>
+				<Context />
 			</div>
-		);
-	}
-}
-
-class Context extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
-	render() {
-		return (
-			<div id='context'></div>
 		);
 	}
 }

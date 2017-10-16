@@ -25,7 +25,7 @@ h4 {
 //style
 body {
 	margin: 0;
-	background: $color-dark;
+	overflow: hidden;
 }
 #wrap {
 	padding: 0;
@@ -46,4 +46,14 @@ body {
 		bottom: 10vh;
 	}
 	.overlay {}
+	#context {
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		canvas {
+			position: relative !important;
+		}
+	}
 }
