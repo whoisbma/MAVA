@@ -32,7 +32,7 @@ class App extends React.Component {
 				<div className='title fadeIntoMe'>
 					<h1>Make Anything Video Art</h1>
 				</div>
-				<div className='instructions' onClick={ this.openForm }>					<h4>Press any key to enter youtube url</h4>
+				<div className='instructions fadeIntoMe' onClick={ this.openForm }>					<h4>Press any key to enter youtube url</h4>
 				</div>
 				<div id='overlay'>
 					<Form visible={ this.state.formVisible }/>
