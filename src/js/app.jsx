@@ -12,19 +12,20 @@ class App extends React.Component {
 			formVisible: false,
 		};
 
-		this.handleKeyDown = this.handleKeyDown.bind(this);
+		this.openForm = this.openForm.bind(this);
 	}
 
 	componentWillMount() {
-		document.addEventListener("keydown", this.handleKeyDown);
+		document.addEventListener("keydown", this.openForm);
 	}
 
-	handleKeyDown() {
+	openForm() {
+		console.log('h');
 		if (this.state.formVisible === false) {	
 			switch( event.keyCode ) {
 				case 13:
 					console.log('enter');
-					this.setState({formVisible: true});
+					this.setState({ formVisible: true });
 					break;
 				default: 
 					break;
@@ -38,11 +39,11 @@ class App extends React.Component {
 				<div className='title'>
 					<h1>Make Anything Video Art</h1>
 				</div>
-				<div className='instructions'>
+				<div className='instructions' onClick={ this.openForm }>
 					<h4>Press any key to enter youtube url</h4>
 				</div>
 				<div id='overlay'>
-					<Form visible={this.state.formVisible}/>
+					<Form visible={ this.state.formVisible }/>
 				</div>
 				<Context />
 			</div>
@@ -74,7 +75,7 @@ class Form extends React.Component {
 		}
 
 		return (
-			<form style={style}>
+			<form style={ style }>
 				<input autoFocus type='url' name='url' id='url-form' placeholder="http://www.example.com" size="60" />
 				<button onClick={ this.submit }>hi</button>
 			</form>
