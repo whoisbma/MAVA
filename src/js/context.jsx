@@ -10,8 +10,6 @@ require('../sass/style.scss');
 export class Context extends React.Component {
 	constructor(props) {
 		super(props);
-
-    this.loader = new THREE.OBJLoader();
 	}
 
 	componentDidMount() {
