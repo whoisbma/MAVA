@@ -35,10 +35,10 @@ class App extends React.Component {
 	render() {
 		return (
 			<div id='wrap'>
-				<div className='title'>
+				<div className='title fadeIntoMe'>
 					<h1>Make Anything Video Art</h1>
 				</div>
-				<div className='instructions'>
+				<div className='instructions fadeIntoMe'>
 					<h4>Press any key to enter youtube url</h4>
 				</div>
 				<div id='overlay'>
