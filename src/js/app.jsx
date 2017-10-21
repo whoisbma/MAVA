@@ -32,9 +32,10 @@ class App extends React.Component {
 				<div className='title fadeIntoMe'>
 					<h1>Make Anything Video Art</h1>
 				</div>
-				<div className='instructions fadeIntoMe' onClick={ this.openForm }>					<h4>Press any key to enter youtube url</h4>
+				<div className='instructions fadeIntoMe' onClick={ this.openForm }>					
+					<h4>Press any key to enter youtube url</h4>
 				</div>
-				<div id='overlay' class='fadeIntoMe' style={ { display:  + this.state.formVisible ? 'block' : 'none' }}>
+				<div id='overlay' style={ { display: this.state.formVisible ? 'block' : 'none' } }>
 					<Form visible={ this.state.formVisible }/>
 				</div>
 				<Context animate={ true }/>

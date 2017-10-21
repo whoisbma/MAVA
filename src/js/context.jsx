@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 
 const THREE = require('three');
 import { OrbitControls } from './utils/orbitControls.js';
+import { OBJLoader } from './utils/OBJLoader.js';
 
 require('../sass/style.scss');
 
@@ -10,6 +11,8 @@ export class Context extends React.Component {
 
 	constructor(props) {
 		super(props);
+
+    this.loader = new THREE.OBJLoader();
 	}
 
 	componentDidMount() {
@@ -37,6 +40,7 @@ export class Context extends React.Component {
 	}
 
 	setupScene() {
+
 		this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 10);
     this.camera.position.z = 5;
@@ -46,27 +50,50 @@ export class Context extends React.Component {
     let geometry = new THREE.BoxGeometry(3, 3, 3);
     let material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
 
+    // // texture
+    // var manager = new THREE.LoadingManager();
+    // manager.onProgress = function ( item, loaded, total ) {
 
-    var tvTexture = new THREE.Texture();
+    //   console.log( item, loaded, total );
 
-    var loader = new THREE.ImageLoader( manager );
-    loader.load( 'assets/tv.png', function ( image ) {
+    // };
 
-      tvTexture.image = image;
-      tvTexture.needsUpdate = true;
+    // var texture = new THREE.Texture();
 
-    } );
-    var loader = new THREE.OBJLoader( manager );
-    loader.load( 'assets/3d/tv.obj', function ( object ) {
+    // var onProgress = function ( xhr ) {
+    //   if ( xhr.lengthComputable ) {
+    //     var percentComplete = xhr.loaded / xhr.total * 100;
+    //     console.log( Math.round(percentComplete, 2) + '% downloaded' );
+    //   }
+    // };
 
-      object.traverse( function ( child ) {
-        if ( child instanceof THREE.Mesh ) {
-          child.material.map = tvTexture;
-        }
-      } );
+    // var onError = function ( xhr ) {
+    // };
 
-    // object.position.y = - 95;
-    // scene.add( object );
+    // var loader = new THREE.ImageLoader( manager );
+    // loader.load( '../../assets/3d/tv.png', function ( image ) {
+
+    //   texture.image = image;
+    //   texture.needsUpdate = true;
+
+    // } );
+    // // model
+    // var loader = new THREE.OBJLoader( manager );
+    // console.log(loader);
+    // loader.load( '../../assets/3d/tv.obj', function ( object ) {
+
+    //   object.traverse( function ( child ) {
+
+    //     if ( child instanceof THREE.Mesh ) {
+
+    //       child.material.map = texture;
+
+    //     }
+
+    //   } );
+
+    //   object.position.y = - 95;
+    //   this.scene.add( object );
 
     // }, onProgress, onError );
 
@@ -77,8 +104,11 @@ export class Context extends React.Component {
     //     uniforms: this.uniforms,
     //   }
     // );
+
     this.cube = new THREE.Mesh(geometry, material);
     this.scene.add(this.cube);
+
+
   
     this.animate();
 	}
