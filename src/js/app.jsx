@@ -34,7 +34,7 @@ class App extends React.Component {
 				</div>
 				<div className='instructions fadeIntoMe' onClick={ this.openForm }>					<h4>Press any key to enter youtube url</h4>
 				</div>
-				<div id='overlay'>
+				<div id='overlay' display={ this.state.formVisible ? 'block' : 'none'}>
 					<Form visible={ this.state.formVisible }/>
 				</div>
 				<Context />
