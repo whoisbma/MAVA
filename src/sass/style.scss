@@ -40,10 +40,12 @@ body {
 	}
 	.instructions {
 		position: absolute;
-		margin-right: auto;
-		margin-left: auto;
 		width: 100%;
 		bottom: 10vh;
+		h4 {
+			width: 300px;
+			margin: 0 auto;
+		}
 	}
 	.overlay {}
 	#context {
