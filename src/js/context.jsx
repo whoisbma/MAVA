@@ -39,7 +39,7 @@ export class Context extends React.Component {
 		this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 10);
     this.camera.position.z = 5;
-    this.scene.background = new THREE.Color( 0x000000 );
+    this.scene.background = new THREE.Color( 0xBBBBBB );
     this.scene.add(this.camera);
 
     let geometry = new THREE.BoxGeometry(3, 3, 3);
