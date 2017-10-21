@@ -3,12 +3,15 @@ import ReactDOM from 'react-dom';
 
 const THREE = require('three');
 import { OrbitControls } from './utils/orbitControls.js';
+import { OBJLoader } from './utils/OBJLoader.js';
 
 require('../sass/style.scss');
 
 export class Context extends React.Component {
 	constructor(props) {
 		super(props);
+
+    this.loader = new THREE.OBJLoader();
 	}
 
 	componentDidMount() {
