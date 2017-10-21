@@ -35,10 +35,10 @@ class App extends React.Component {
 				<div className='instructions' onClick={ this.openForm }>
 					<h4>Press any key to enter youtube url</h4>
 				</div>
-				<div id='overlay' display={ this.state.formVisible ? 'block' : 'none'}>
+				<div id='overlay' style={ 'display: ' + this.state.formVisible ? 'block' : 'none'}>
 					<Form visible={ this.state.formVisible }/>
 				</div>
-				<Context />
+				<Context animate={ true }/>
 			</div>
 		);
 	}
