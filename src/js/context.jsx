@@ -31,9 +31,7 @@ export class Context extends React.Component {
 		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
 		this.renderer.setSize(window.innerWidth, window.innerHeight);
 		this.renderer.domElement.style.position = 'absolute';
-		this.renderer.domElement.style.zIndex = '-11';
 		document.getElementById('context').appendChild(this.renderer.domElement);
-
 	}
 
 	setupScene() {
