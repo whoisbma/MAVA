@@ -3,8 +3,8 @@
 
 // type
 $font-main: aktiv_groteskbold_italic;
-$font-size-xl: 6vw;
-$font-size-l: 4vw;
+$font-size-xl: 5vw;
+$font-size-l: 3vw;
 $font-size-m: 2vw;
 //colors
 $color-dark: #000;
@@ -44,12 +44,28 @@ body {
 		width: 100%;
 		bottom: 10vh;
 		h4 {
+			cursor: pointer; cursor: hand;
 			width: 300px;
 			margin: 0 auto;
 		}
 	}
+	#overlay {
+		position: absolute;
+		z-index: 1;
+		background-image: url("/assets/images/glass.png");
+		width: 100%;
+		height: 100%;
+		top: 0;
+		form {
+			position: absolute;
+		 	top: 50%;
+			left: 50%;
+			transform: translate(-50%, -50%);
+		}
+	}
 	
 	#context {
+		pointer-events: none;
 		position: absolute;
 		left: 0;
 		top: 0;
@@ -60,4 +76,18 @@ body {
 			position: relative !important;
 		}
 	}
+}
+
+.fadeIntoMe {
+  animation-duration: 2s;
+  animation-name: fadeIntoMe;
+}
+
+@keyframes fadeIntoMe {
+  from {
+    opacity: 0;
+  }
+  to {
+   opacity: 1;
+  }
 }

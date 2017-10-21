@@ -29,10 +29,10 @@ class App extends React.Component {
 	render() {
 		return (
 			<div id='wrap'>
-				<div className='title'>
+				<div className='title fadeIntoMe'>
 					<h1>Make Anything Video Art</h1>
 				</div>
-				<div className='instructions' onClick={ this.openForm }>
+				<div className='instructions fadeIntoMe' onClick={ this.openForm }>					
 					<h4>Press any key to enter youtube url</h4>
 				</div>
 				<div id='overlay' style={ { display: this.state.formVisible ? 'block' : 'none' } }>
