@@ -7,6 +7,7 @@ import { OrbitControls } from './utils/orbitControls.js';
 require('../sass/style.scss');
 
 export class Context extends React.Component {
+
 	constructor(props) {
 		super(props);
 	}
@@ -44,6 +45,30 @@ export class Context extends React.Component {
 
     let geometry = new THREE.BoxGeometry(3, 3, 3);
     let material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
+
+
+    var tvTexture = new THREE.Texture();
+
+    var loader = new THREE.ImageLoader( manager );
+    loader.load( 'assets/tv.png', function ( image ) {
+
+      tvTexture.image = image;
+      tvTexture.needsUpdate = true;
+
+    } );
+    var loader = new THREE.OBJLoader( manager );
+    loader.load( 'assets/3d/tv.obj', function ( object ) {
+
+      object.traverse( function ( child ) {
+        if ( child instanceof THREE.Mesh ) {
+          child.material.map = tvTexture;
+        }
+      } );
+
+    // object.position.y = - 95;
+    // scene.add( object );
+
+    // }, onProgress, onError );
 
     // let material = new THREE.ShaderMaterial(
     //   { 
