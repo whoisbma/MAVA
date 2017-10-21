@@ -22,14 +22,7 @@ class App extends React.Component {
 	openForm() {
 		console.log('h');
 		if (this.state.formVisible === false) {	
-			switch( event.keyCode ) {
-				case 13:
-					console.log('enter');
-					this.setState({ formVisible: true });
-					break;
-				default: 
-					break;
-			}
+			this.setState({ formVisible: true });
 		}
 	}
 
@@ -69,7 +62,7 @@ class Form extends React.Component {
 	render() {
 		let style = {};
 		if (this.props.visible) {
-			style.display = 'initial';
+			style.display = 'block';
 		} else {
 			style.display = 'none';
 		}
