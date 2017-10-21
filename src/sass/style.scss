@@ -48,7 +48,11 @@ body {
 			margin: 0 auto;
 		}
 	}
-	.overlay {}
+	.overlay {
+		form {
+			display: inherit;
+		}
+	}
 	
 	#context {
 		position: absolute;
