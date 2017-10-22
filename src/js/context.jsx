@@ -21,6 +21,7 @@ export class Context extends React.Component {
     
     this.setupRenderer();
     this.setupScene();
+    this.setUpObj();
     this.setupControls();
 	}
 
@@ -35,77 +36,65 @@ export class Context extends React.Component {
 		document.getElementById('context').appendChild(this.renderer.domElement);
 	}
 
+  setUpObj() {
+    const manager = new THREE.LoadingManager();
+    const imgLoader = new THREE.ImageLoader( manager );
+    const objLoader = new THREE.OBJLoader( manager );
+    let texture = new THREE.Texture();
+
+    manager.onProgress = function (item, loaded, total) {
+      console.log(item, loaded, total);
+    };
+
+    const onProgress = function(xhr) {
+      if (xhr.lengthComputable) {
+        let percentComplete = xhr.loaded / xhr.total * 100;
+        console.log( Math.round(percentComplete, 2) + '% downloaded' );
+      }
+    };
+
+    const onError = function (xhr) {
+      console.log("OBJ load error");
+    };
+    
+    imgLoader.load( 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/UV_Grid_Sm.jpg', (image) => {
+      texture.image = image;
+      texture.needsUpdate = true;
+    });
+
+    const loadObject = (object) => {
+      object.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.material.map = texture;
+        }
+      });
+      object.position.y = 0;
+      this.scene.add( object );
+    }
+    
+    objLoader.load( 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/obj/male02/male02.obj', loadObject.bind(this), onProgress, onError );
+  }
+
 	setupScene() {
 
 		this.scene = new THREE.Scene();
-    this.camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 10);
-    this.camera.position.z = 5;
+    this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000);
+    this.camera.position.z = 50;
     this.scene.background = new THREE.Color( 0xBBBBBB );
     this.scene.add(this.camera);
+
+    var ambient = new THREE.AmbientLight( 0x101030 );
+    this.scene.add( ambient );
+    var directionalLight = new THREE.DirectionalLight( 0xffeedd );
+    directionalLight.position.set( 0, 0, 1 );
+    this.scene.add( directionalLight );
 
     let geometry = new THREE.BoxGeometry(3, 3, 3);
     let material = new THREE.MeshBasicMaterial( { color: 0xff0000, wireframe: true } );
 
-    // // texture
-    // var manager = new THREE.LoadingManager();
-    // manager.onProgress = function ( item, loaded, total ) {
-
-    //   console.log( item, loaded, total );
-
-    // };
-
-    // var texture = new THREE.Texture();
-
-    // var onProgress = function ( xhr ) {
-    //   if ( xhr.lengthComputable ) {
-    //     var percentComplete = xhr.loaded / xhr.total * 100;
-    //     console.log( Math.round(percentComplete, 2) + '% downloaded' );
-    //   }
-    // };
-
-    // var onError = function ( xhr ) {
-    // };
-
-    // var loader = new THREE.ImageLoader( manager );
-    // loader.load( '../../assets/3d/tv.png', function ( image ) {
-
-    //   texture.image = image;
-    //   texture.needsUpdate = true;
-
-    // } );
-    // // model
-    // var loader = new THREE.OBJLoader( manager );
-    // console.log(loader);
-    // loader.load( '../../assets/3d/tv.obj', function ( object ) {
-
-    //   object.traverse( function ( child ) {
-
-    //     if ( child instanceof THREE.Mesh ) {
-
-    //       child.material.map = texture;
-
-    //     }
-
-    //   } );
-
-    //   object.position.y = - 95;
-    //   this.scene.add( object );
-
-    // }, onProgress, onError );
-
-    // let material = new THREE.ShaderMaterial(
-    //   { 
-    //     vertexShader: vertShader,
-    //     fragmentShader: fragShader,
-    //     uniforms: this.uniforms,
-    //   }
-    // );
-
     this.cube = new THREE.Mesh(geometry, material);
     this.scene.add(this.cube);
 
-
-  
     this.animate();
 	}
 
