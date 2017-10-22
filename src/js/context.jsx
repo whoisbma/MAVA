@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom';
 const THREE = require('three');
 import { OrbitControls } from './utils/orbitControls.js';
 import { OBJLoader } from './utils/OBJLoader.js';
+import { CSS3DRenderer } from './utils/CSS3DRenderer.js';
 
 require('../sass/style.scss');
 
@@ -36,49 +37,7 @@ export class Context extends React.Component {
 		document.getElementById('context').appendChild(this.renderer.domElement);
 	}
 
-  setUpObj() {
-    const manager = new THREE.LoadingManager();
-    const imgLoader = new THREE.ImageLoader( manager );
-    const objLoader = new THREE.OBJLoader( manager );
-    let texture = new THREE.Texture();
-    this.obj = null;
-
-    manager.onProgress = function (item, loaded, total) {
-      console.log(item, loaded, total);
-    };
-
-    const onProgress = function(xhr) {
-      if (xhr.lengthComputable) {
-        let percentComplete = xhr.loaded / xhr.total * 100;
-        console.log( Math.round(percentComplete, 2) + '% downloaded' );
-      }
-    };
-
-    const onError = function (xhr) {
-      console.log("OBJ load error");
-    };
-    
-    imgLoader.load( 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/UV_Grid_Sm.jpg', (image) => {
-      texture.image = image;
-      texture.needsUpdate = true;
-    });
-
-    const loadObject = (object) => {
-      object.traverse((child) => {
-        if (child instanceof THREE.Mesh) {
-          child.material.map = texture;
-        }
-      });
-      object.position.y = -20;
-      this.obj = object;
-      this.scene.add( this.obj );
-    }
-    
-    objLoader.load( 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/obj/male02/male02.obj', loadObject.bind(this), onProgress, onError );
-  }
-
 	setupScene() {
-
 		this.scene = new THREE.Scene();
     this.camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 2000);
     this.camera.position.z = 50;
@@ -103,6 +62,47 @@ export class Context extends React.Component {
 	setupControls() {
     this.controls = new THREE.OrbitControls( this.camera, this.renderer.domElement );
     this.controls.enableZoom = false;
+  }
+
+  setUpObj() {
+    const manager = new THREE.LoadingManager();
+    const imgLoader = new THREE.ImageLoader( manager );
+    const objLoader = new THREE.OBJLoader( manager );
+    let texture = new THREE.Texture();
+    this.obj = null;
+
+    manager.onProgress = (item, loaded, total) => {
+      console.log(item, loaded, total);
+    };
+
+    const onProgress = (xhr) => {
+      if (xhr.lengthComputable) {
+        let percentComplete = xhr.loaded / xhr.total * 100;
+        console.log( Math.round(percentComplete, 2) + '% downloaded' );
+      }
+    };
+
+    const onError = (xhr) => {
+      console.log("OBJ load error");
+    };
+    
+    imgLoader.load( 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/UV_Grid_Sm.jpg', (image) => {
+      texture.image = image;
+      texture.needsUpdate = true;
+    });
+
+    const loadObject = (object) => {
+      object.traverse((child) => {
+        if (child instanceof THREE.Mesh) {
+          child.material.map = texture;
+        }
+      });
+      object.position.y = -20;
+      this.obj = object;
+      this.scene.add( this.obj );
+    }
+    
+    objLoader.load( 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/obj/male02/male02.obj', loadObject.bind(this), onProgress, onError );
   }
 
   animate() {
