@@ -41,6 +41,7 @@ export class Context extends React.Component {
     const imgLoader = new THREE.ImageLoader( manager );
     const objLoader = new THREE.OBJLoader( manager );
     let texture = new THREE.Texture();
+    this.obj = null;
 
     manager.onProgress = function (item, loaded, total) {
       console.log(item, loaded, total);
@@ -68,8 +69,9 @@ export class Context extends React.Component {
           child.material.map = texture;
         }
       });
-      object.position.y = 0;
-      this.scene.add( object );
+      object.position.y = -20;
+      this.obj = object;
+      this.scene.add( this.obj );
     }
     
     objLoader.load( 'https://raw.githubusercontent.com/mrdoob/three.js/master/examples/obj/male02/male02.obj', loadObject.bind(this), onProgress, onError );
@@ -114,6 +116,9 @@ export class Context extends React.Component {
     if (this.props.animate) {
       this.cube.rotation.x += 0.003;
       this.cube.rotation.y += 0.005;
+      if (this.obj !== null) {
+        this.obj.rotation.y += 0.003;
+      }
     } 
   }
 
