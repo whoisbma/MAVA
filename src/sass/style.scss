@@ -6,9 +6,13 @@ $font-main: aktiv_groteskbold_italic;
 $font-size-xl: 5vw;
 $font-size-l: 3vw;
 $font-size-m: 2vw;
-//colors
+// units
+$spacer: 0.5rem;
+
+// colors
 $color-dark: #000;
 $color-light: #FFF;
+$color-grey: #aaa;
 
 // text styles
 h1, h2, h3, h4, p {
@@ -61,6 +65,33 @@ body {
 		 	top: 50%;
 			left: 50%;
 			transform: translate(-50%, -50%);
+			font-family: $font-main;
+			color: $color-light;
+			font-size: $font-size-m;
+			border-bottom: 1px $color-light solid;
+		    width: 578px;
+			input {
+				font-size: $font-size-m;
+				font-family: $font-main;
+				color: $color-light;
+				background-color: rgba(0, 0, 0, 0);
+				border: none;
+				width: 40%;
+				padding-left: $spacer;
+			}
+			button {
+				background-color: rgba(0, 0, 0, 0);
+				border: none;
+				color: $color-light;
+				font-size: $font-size-m;
+			}
+			input:focus, button:focus {
+				outline: none;
+			}
+		}
+		form:before {
+			content: "http://youtube.com/";
+			color: $color-grey;
 		}
 	}
 	

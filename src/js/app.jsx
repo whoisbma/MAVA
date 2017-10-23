@@ -35,7 +35,7 @@ class App extends React.Component {
 				<div className='instructions fadeIntoMe' onClick={ this.openForm }>					
 					<h4>Press any key to enter youtube url</h4>
 				</div>
-				<div id='overlay' style={ { display: this.state.formVisible ? 'block' : 'none' } }>
+				<div id='overlay' class='fadeIntoMe' style={ { display: this.state.formVisible ? 'block' : 'none' } }>
 					<Form visible={ this.state.formVisible }/>
 				</div>
 				<Context animate={ true }/>
@@ -69,8 +69,8 @@ class Form extends React.Component {
 
 		return (
 			<form style={ style }>
-				<input autoFocus type='url' name='url' id='url-form' placeholder="http://www.example.com" size="60" />
-				<button onClick={ this.submit }>hi</button>
+				<input autoFocus type='url' name='url' id='url-form' placeholder="uGI_HobjUFE" size="60" />
+				<button onClick={ this.submit }>↩</button>
 			</form>
 		)
 	}
