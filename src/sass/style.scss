@@ -3,16 +3,21 @@
 
 // type
 $font-main: aktiv_groteskbold_italic;
-$font-size-xl: 5vw;
+$font-size-xl: 5.5vw;
 $font-size-l: 3vw;
 $font-size-m: 2vw;
+$font-size-s: 1.6vw;
+$font-size-mobile-xl: 3rem;
+$font-size-mobile-l: 2rem;
+$font-size-mobile-m: 1.6rem;
+$font-size-mobile-s: 1rem;
 // units
 $spacer: 0.5rem;
 
 // colors
 $color-dark: #000;
 $color-light: #FFF;
-$color-grey: #aaa;
+$color-grey: #909090;
 
 // text styles
 h1, h2, h3, h4, p {
@@ -21,9 +26,15 @@ h1, h2, h3, h4, p {
 }
 h1 { 
 	font-size: $font-size-xl;
+	@media (max-width: 800px) {
+		font-size: $font-size-mobile-xl;
+	}
 }
 h4 { 
 	font-size: $font-size-m;
+	@media (max-width: 800px) {
+		font-size: $font-size-mobile-m;
+	}
 }
 
 //style
@@ -42,6 +53,8 @@ body {
 	.title {
 		position: relative;
 		top: 10vh;
+		user-select: none;
+		cursor: default;
 	}
 	.instructions {
 		position: absolute;
@@ -68,30 +81,56 @@ body {
 			font-family: $font-main;
 			color: $color-light;
 			font-size: $font-size-m;
-			border-bottom: 1px $color-light solid;
-		    width: 578px;
+			border-bottom: 1px $color-grey solid;
+			width: 60%;
+			@media (max-width: 800px) {
+				font-size: $font-size-mobile-m;
+				width: 90%;
+			}
 			input {
 				font-size: $font-size-m;
 				font-family: $font-main;
 				color: $color-light;
 				background-color: rgba(0, 0, 0, 0);
 				border: none;
-				width: 40%;
-				padding-left: $spacer;
+				width: 60%;
+				height: $spacer*6;
+				@media (max-width: 800px) {
+					font-size: $font-size-mobile-m;
+					width: 80%;
+					position: relative;
+					right: 5%;
+				}
 			}
 			button {
+				position: relative;
+				left: 2.8%;
 				background-color: rgba(0, 0, 0, 0);
 				border: none;
 				color: $color-light;
 				font-size: $font-size-m;
+				@media (max-width: 800px) {
+					font-size: $font-size-mobile-m;
+					left: 7.6%;
+				}
 			}
 			input:focus, button:focus {
 				outline: none;
 			}
 		}
 		form:before {
+			position: relative;
+			right: 2%;
 			content: "http://youtube.com/";
 			color: $color-grey;
+			padding-right: $spacer;
+			font-size: $font-size-s;
+			@media (max-width: 800px) {
+				font-size: $font-size-mobile-s;
+				display: block;
+				right: 0%;
+				text-align: left;
+			}
 		}
 	}
 	
@@ -110,7 +149,7 @@ body {
 }
 
 .fadeIntoMe {
-  animation-duration: 2s;
+  animation-duration: 1s;
   animation-name: fadeIntoMe;
 }
 
