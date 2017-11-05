@@ -38,6 +38,17 @@ class App extends React.Component {
 				<div id='overlay' className='fadeIntoMe' style={ { display: this.state.formVisible ? 'block' : 'none' } }>
 					<Form visible={ this.state.formVisible }/>
 				</div>
+				<div id='label'>
+					<div className='label-name'>
+						First Lastname
+					</div>
+					<div className='label-info'>
+						<span className='label-info-title'>Untitled</span>
+						,&nbsp;
+						<span className='label-info-year'>2017</span>
+						<div className='label-info-media'>Video Art</div>
+					</div>
+				</div>
 				<Context animate={ true }/>
 			</div>
 		);

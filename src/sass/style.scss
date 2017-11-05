@@ -66,6 +66,22 @@ body {
 			margin: 0 auto;
 		}
 	}
+	#label {
+		font-family: $font-main;
+		color: $color-light;
+		font-size: $font-size-s;
+		text-align: left;
+		text-transform: capitalize;
+		position: absolute;
+		bottom: 10vh;
+		left: 12vw;
+		.label-info {
+			margin-top: $spacer;
+		}
+		@media (max-width: 800px) {
+			font-size: $font-size-mobile-m;
+		}
+	}
 	#overlay {
 		position: absolute;
 		z-index: 1;
