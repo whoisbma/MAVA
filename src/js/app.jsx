@@ -29,16 +29,20 @@ class App extends React.Component {
 	render() {
 		return (
 			<div id='wrap'>
+
 				<div className='title fadeIntoMe'>
 					<h1>Make Anything Video Art</h1>
 				</div>
+
 				<div className='instructions fadeIntoMe' onClick={ this.openForm }>					
 					<h4>Press any key to enter youtube url</h4>
 				</div>
+
 				<div id='overlay' className='fadeIntoMe' style={ { display: this.state.formVisible ? 'block' : 'none' } }>
 					<Form visible={ this.state.formVisible }/>
 				</div>
-				<div id='label'>
+
+				<div id='label' className='fadeIntoMe'>
 					<div className='label-name'>
 						First Lastname
 					</div>
@@ -49,6 +53,7 @@ class App extends React.Component {
 						<div className='label-info-media'>Video Art</div>
 					</div>
 				</div>
+
 				<Context animate={ true }/>
 			</div>
 		);
