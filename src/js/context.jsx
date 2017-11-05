@@ -30,6 +30,24 @@ export class Context extends React.Component {
 
 	}
 
+
+// // create the plane mesh
+// var geometry = new THREE.PlaneGeometry();
+// var planeMesh= new THREE.Mesh( geometry, material );
+// // add it to the WebGL scene
+// glScene.add(planeMesh);
+
+// create the dom Element
+// var element = document.createElement( 'img' );
+// element.src = 'textures/sprites/ball.png';
+// // create the object3d for this element
+// var cssObject = new THREE.CSS3DObject( element );
+// // we reference the same position and rotation 
+// cssObject.position = planeMesh.position;
+// cssObject.rotation = planeMesh.rotation;
+// // add it to the css scene
+// cssScene.add(cssObject);
+
 	setupRenderer() {
 		this.renderer = new THREE.WebGLRenderer( { antialias: true } );
 		this.renderer.setSize(window.innerWidth, window.innerHeight);
@@ -55,6 +73,15 @@ export class Context extends React.Component {
 
     this.cube = new THREE.Mesh(geometry, material);
     this.scene.add(this.cube);
+
+    let testPlane = new THREE.PlaneGeometry( 20, 20 );
+    let planeMesh = new THREE.Mesh(testPlane, material);
+    this.scene.add(planeMesh);
+    
+    var cssRenderer = new THREE.CSS3DRenderer();
+    cssRenderer.setSize( window.innerWidth, window.innerHeight );
+    cssRenderer.domElement.style.position = 'absolute';
+    cssRenderer.domElement.style.top = 0;
 
     this.animate();
 	}
